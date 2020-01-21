@@ -46,6 +46,7 @@ def start(update, context):
   "/videos: Gives links to all the videos from ISYF 2020!\n"
   "/nigel: Soon.\n"
   "/ryan: Does the most basic thing ever.\n"
+  "/greenballs: GREEN BALLS\n"
   "/help: Gives a list if all available commands.");
   pass
 
@@ -96,6 +97,7 @@ def helpmsg(update, context):
   "/videos: Gives links to all the videos from ISYF 2020!\n"
   "/nigel: Soon.\n"
   "/ryan: Does the most basic thing ever.\n"
+  "/greenballs: GREEN BALLS\n"
   "/help: Gives a list of all available commands.")
   pass
 
@@ -113,6 +115,7 @@ dispatcher.add_handler(ryan_handler)
 
 @send_typing_action
 def nigel(update, context):
+  time.sleep(0.5)
   context.bot.send_message(chat_id=update.effective_chat.id, text="Something will be here.\n"
   "Soon.")
   context.bot.send_message(chat_id=update.effective_user.id, text="Watch the rise of a new religion.")
@@ -122,12 +125,15 @@ nigel_handler = CommandHandler('nigel', nigel)
 dispatcher.add_handler(nigel_handler)
 
 @send_typing_action
-def pmtest(update, context):
-  context.bot.send_message(chat_id=update.effective_user.id, text="Just a simple PM test.")
+def greenballs(update, context):
+  time.sleep(0.5)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="All my life, I wanted...")
+  time.sleep(0.5)
+  context.bot.send_message(chat_id=update.effective_chat.id, "*GREEN BALLS*", parse_mode=telegram.ParseMode.MARKDOWN)
   pass
   
-pmtest_handler = CommandHandler('pmtest', pmtest)
-dispatcher.add_handler(pmtest_handler)
+gb_handler = CommandHandler('greenballs', greenballs)
+dispatcher.add_handler(gb_handler)
 
 @send_typing_action
 def unknown(update, context):
