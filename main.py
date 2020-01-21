@@ -92,7 +92,7 @@ dispatcher.add_handler(videos_handler)
 def helpmsg(update, context):
   time.sleep(0.5)
   context.bot.send_message(chat_id=update.effective_chat.id, text="Commands:\n\n"
-  "/start: Brings up this welcome message!\n"o
+  "/start: Brings up this welcome message!\n"
   "/photos: Gives direct links to all the ISYF 2020 photos!\n"
   "/videos: Gives links to all the videos from ISYF 2020!\n"
   "/nigel: Soon.\n"
