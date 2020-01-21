@@ -101,6 +101,7 @@ dispatcher.add_handler(ryan_handler)
 def nigel(update, context):
   context.bot.send_message(chat_id=update.effective_chat.id, text="Something will be here.\n"
   "Soon.")
+  context.bot.send_message(chat_id=update.effective_user.id, text="Watch the rise of a new religion.")
   pass
 
 nigel_handler = CommandHandler('nigel', nigel)
