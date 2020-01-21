@@ -64,6 +64,22 @@ photos_handler = CommandHandler('photos', photos)
 dispatcher.add_handler(photos_handler)
 
 @send_typing_action
+def videos(update, context):
+  button_list = [
+    InlineKeyboardButton("Opening Ceremony", url="https://youtu.be/YbGXT5pI1F4"),
+    InlineKeyboardButton("Facilitator Intro", url="https://youtu.be/poOgi4r45fs"),
+    InlineKeyboardButton("Closing Ceremony", url="https://youtu.be/ysrZWIcMC6g")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  time.sleep(0.5)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="These are the videos from ISYF 2020!", reply_markup=reply_markup)
+  pass
+
+videos_handler = CommandHandler('videos', videos)
+dispatcher.add_handler(videos_handler)
+
+@send_typing_action
 def helpmsg(update, context):
   time.sleep(0.5)
   context.bot.send_message(chat_id=update.effective_chat.id, text="Commands:\n\n/start: Brings up this welcome message!\n/photos: Gives direct links to all the ISYF 2020 photos!\n/videos: Gives links to all the videos from ISYF 2020!\n/ryan: Does the most basic thing ever.\n/help: Gives a list of all available commands.")
@@ -81,21 +97,12 @@ def ryan(update, context):
 ryan_handler = CommandHandler('ryan', ryan)
 dispatcher.add_handler(ryan_handler)
 
-@send_typing_action
-def videos(update, context):
-  button_list = [
-    InlineKeyboardButton("Opening Ceremony", url="https://youtu.be/YbGXT5pI1F4"),
-    InlineKeyboardButton("Facilitator Intro", url="https://youtu.be/poOgi4r45fs"),
-    InlineKeyboardButton("Closing Ceremony", url="https://youtu.be/ysrZWIcMC6g")
-  ]
+def nigel(update, context):
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Something will be here.\n"
+  "Soon.")
 
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
-  time.sleep(0.5)
-  context.bot.send_message(chat_id=update.effective_chat.id, text="These are the videos from ISYF 2020!", reply_markup=reply_markup)
-  pass
-
-videos_handler = CommandHandler('videos', videos)
-dispatcher.add_handler(videos_handler)
+nigel_handler = CommandHandler('nigel', nigel)
+dispatcher.add_handler(nigel_handler)
 
 @send_typing_action
 def unknown(update, context):
