@@ -38,7 +38,15 @@ def build_menu(buttons,
 @send_typing_action
 def start(update, context):
   time.sleep(0.5)
-  context.bot.send_message(chat_id=update.effective_chat.id, text="Hi! I'm Stella.\nYou might know me from ISYF!\n\nHere are the commands that I can do:\n/start: Brings up a welcome message!\n/photos: Gives direct links to all the ISYF 2020 photos!\n/videos: Gives links to all the videos from ISYF 2020!\n/ryan: Does the most basic thing ever.\n/help: Gives a list if all available commands.");
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Hi! I'm Stella.\n"
+  "You might know me from ISYF!\n\n"
+  "Here are the commands that I can do:\n"
+  "/start: Brings up a welcome message!\n"
+  "/photos: Gives direct links to all the ISYF 2020 photos!\n"
+  "/videos: Gives links to all the videos from ISYF 2020!\n"
+  "/nigel: Soon.\n"
+  "/ryan: Does the most basic thing ever.\n"
+  "/help: Gives a list if all available commands.");
   pass
 
 start_handler = CommandHandler('start', start)
@@ -82,7 +90,13 @@ dispatcher.add_handler(videos_handler)
 @send_typing_action
 def helpmsg(update, context):
   time.sleep(0.5)
-  context.bot.send_message(chat_id=update.effective_chat.id, text="Commands:\n\n/start: Brings up this welcome message!\n/photos: Gives direct links to all the ISYF 2020 photos!\n/videos: Gives links to all the videos from ISYF 2020!\n/ryan: Does the most basic thing ever.\n/help: Gives a list of all available commands.")
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Commands:\n\n"
+  "/start: Brings up this welcome message!\n"
+  "/photos: Gives direct links to all the ISYF 2020 photos!\n"
+  "/videos: Gives links to all the videos from ISYF 2020!\n"
+  "/nigel: Soon.\n"
+  "/ryan: Does the most basic thing ever.\n"
+  "/help: Gives a list of all available commands.")
   pass
 
 help_handler = CommandHandler('help', helpmsg)
@@ -119,7 +133,8 @@ dispatcher.add_handler(pmtest_handler)
 def unknown(update, context):
   time.sleep(0.5)
   context.bot.send_sticker(chat_id=update.effective_chat.id, sticker="https://github.com/EzzPrograms/Misc-Stuff/blob/master/STK-20200116-WA0049.webp?raw=true")
-  context.bot.send_message(chat_id=update.effective_chat.id, text="Hmm, this is an invalid command.\nTry using /help to see all my valid commands!")
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Hmm, this is an invalid command.\n"
+  "Try using /help to see all my valid commands!")
   pass
 
 unknown_handler = MessageHandler(Filters.command, unknown)
