@@ -46,8 +46,18 @@ dispatcher.add_handler(start_handler)
 
 @send_typing_action
 def photos(update, context):
+  button_list = [
+    InlineKeyboardButton("Day 0", url="http://tinyurl.com/isyf2020photosday0"),
+    InlineKeyboardButton("Day 1", url="http://tinyurl.com/isyf2020photosday1"),
+    InlineKeyboardButton("Day 2", url="http://tinyurl.com/isyf2020photosday2"),
+    InlineKeyboardButton("Day 3", url="http://tinyurl.com/isyf2020photosday3"),
+    InlineKeyboardButton("Day 4", url="http://tinyurl.com/isyf2020photosday4"),
+    InlineKeyboardButton("Day 5", url="http://tinyurl.com/isyf2020photosday5")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=2))
   time.sleep(0.5)
-  context.bot.send_message(chat_id=update.effective_chat.id, text="Here are the links!\n\nDay 0: http://tinyurl.com/isyf2020photosday0\n\nDay 0.5: http://tinyurl.com/isyf2020photosday1\n\nDay 2: http://tinyurl.com/isyf2020photosday2\n\nDay 3: http://tinyurl.com/isyf2020photosday3\n\nDay 4: http://tinyurl.com/isyf2020photosday4\n\nDay 5: http://tinyurl.com/isyf2020photosday5")
+  context.bot.send_message(chat_id=update.effective_chat.id, text="These are the photos from ISYF 2020!", reply_markup=reply_markup)
   pass
 
 photos_handler = CommandHandler('photos', photos)
