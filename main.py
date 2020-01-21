@@ -128,7 +128,7 @@ dispatcher.add_handler(nigel_handler)
 def greenballs(update, context):
   time.sleep(0.5)
   context.bot.send_message(chat_id=update.effective_chat.id, text="All my life, I wanted...")
-  time.sleep(0.5)
+  time.sleep(1)
   context.bot.send_message(chat_id=update.effective_chat.id, text="*GREEN BALLS*", parse_mode=telegram.ParseMode.MARKDOWN)
   pass
   
