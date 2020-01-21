@@ -97,12 +97,22 @@ def ryan(update, context):
 ryan_handler = CommandHandler('ryan', ryan)
 dispatcher.add_handler(ryan_handler)
 
+@send_typing_action
 def nigel(update, context):
   context.bot.send_message(chat_id=update.effective_chat.id, text="Something will be here.\n"
   "Soon.")
+  pass
 
 nigel_handler = CommandHandler('nigel', nigel)
 dispatcher.add_handler(nigel_handler)
+
+@send_typing_action
+def pmtest(update, context):
+  context.bot.send_message(chat_id=update.effective_user.id, text="Just a simple PM test.")
+  pass
+  
+pmtest_handler = CommandHandler('pmtest', pmtest)
+dispatcher.add_handler(pmtest_handler)
 
 @send_typing_action
 def unknown(update, context):
