@@ -92,7 +92,7 @@ dispatcher.add_handler(videos_handler)
 def helpmsg(update, context):
   time.sleep(0.5)
   context.bot.send_message(chat_id=update.effective_chat.id, text="Commands:\n\n"
-  "/start: Brings up this welcome message!\n"
+  "/start: Brings up this welcome message!\n"o
   "/photos: Gives direct links to all the ISYF 2020 photos!\n"
   "/videos: Gives links to all the videos from ISYF 2020!\n"
   "/nigel: Soon.\n"
@@ -128,12 +128,36 @@ dispatcher.add_handler(nigel_handler)
 def greenballs(update, context):
   time.sleep(0.5)
   context.bot.send_message(chat_id=update.effective_chat.id, text="All my life, I wanted...")
-  time.sleep(1)
-  context.bot.send_message(chat_id=update.effective_chat.id, text="*GREEN BALLS*", parse_mode=telegram.ParseMode.MARKDOWN)
+  
+  button_list = [
+    InlineKeyboardButton("Full Story Here", callback_data="GBFullStory")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  time.sleep(0.5)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="*GREEN BALLS*", parse_mode=telegram.ParseMode.MARKDOWN, reply_markup=reply_markup)
   pass
   
 gb_handler = CommandHandler('greenballs', greenballs)
 dispatcher.add_handler(gb_handler)
+
+@send_typing_action
+def gbfull(update, context):
+  time.sleep(0.3)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="A long long time ago, in a land far far away, there was this young boy. He was talented and excelled at everything he did, often scoring extremely well for his tests.")
+  time.sleep(0.3)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Once he got 100/100 for a Math test and his teacher wanted to reward him. So they asked him, \“What do you want as a reward?\” And he answered, \“I want green balls.\” His teacher were perplexed and asked him why but he refused to answer.")
+  time.sleep(0.3)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Many years later, when he won the Nobel Prize for curing cancer, he declined the Nobel Committee’s prize money. The Committee then asked him what he wanted instead. And he answered, \“I want green balls.\” The Nobel Committee was perplexed and asked him why but he refused to answer.")
+  time.sleep(0.3)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Many years after that, on his deathbed, he gathered all those around him and asked them, \“Do you want to know why all my life, I’m been so interested in green balls?\” And of course they all said yes. And so he said,")
+  time.sleep(0.3)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="\“I…I…have…\”")
+  time.sleep(0.5)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="And then he died.")
+  pass
+  
+dispatcher.add_handler(CallbackQueryHandler(gbfull, pattern="GBFullStory"))
 
 @send_typing_action
 def unknown(update, context):
