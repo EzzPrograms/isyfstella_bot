@@ -143,6 +143,13 @@ dispatcher.add_handler(gb_handler)
 
 @send_typing_action
 def gbfull(update, context):
+  query = update.callback_query
+  context.bot.edit_message_text(
+    chat_id=query.message.chat_id,
+    message_id=query.message.message_id,
+    text="*GREEN BALLS*",
+    parse_mode=telegram.ParseMode.MARKDOWN
+  )
   time.sleep(0.7)
   context.bot.send_message(chat_id=update.effective_chat.id, text="A long long time ago, in a land far far away, there was this young boy. He was talented and excelled at everything he did, often scoring extremely well for his tests.")
   time.sleep(0.7)
@@ -153,11 +160,12 @@ def gbfull(update, context):
   context.bot.send_message(chat_id=update.effective_chat.id, text="Many years after that, on his deathbed, he gathered all those around him and asked them, “Do you want to know why all my life, I’m been so interested in green balls?” And of course they all said yes. And so he said,")
   time.sleep(0.7)
   context.bot.send_message(chat_id=update.effective_chat.id, text="“I…I…have…”")
-  time.sleep(0.5)
+  time.sleep(1)
   context.bot.send_message(chat_id=update.effective_chat.id, text="And then he died.")
   pass
-  
-dispatcher.add_handler(CallbackQueryHandler(gbfull, pattern="GBFullStory"))
+
+gbfull_handler= CallbackQueryHandler(gbfull, pattern="GBFullStory") 
+dispatcher.add_handler(gbfull_handler)
 
 @send_typing_action
 def unknown(update, context):
