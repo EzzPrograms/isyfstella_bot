@@ -117,17 +117,34 @@ def grouplist(update, context):
 
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=2))
 
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Which group do you want to know about?", reply_markup=reply_markup)
+  pass
+
+@send_typing_action
+def glcallback(update, context):
+  button_list = [
+    InlineKeyboardButton("Apollo", callback_data="apollo"),
+    InlineKeyboardButton("Cassini", callback_data="cassini"),
+    InlineKeyboardButton("Curiosity", callback_data="curiosity"),
+    InlineKeyboardButton("Discovery", callback_data="stellagang"),
+    InlineKeyboardButton("New Horizons", callback_data="nhorizons"),
+    InlineKeyboardButton("Parker", callback_data="parker"),
+    InlineKeyboardButton("Rosetta", callback_data="rosetta"),
+    InlineKeyboardButton("Sputnik", callback_data="sputnik"),
+    InlineKeyboardButton("Viking", callback_data="viking"),
+    InlineKeyboardButton("Voyager", callback_data="voyager")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=2))
+
   query = update.callback_query
 
-  if query.id != "":
-    context.bot.edit_message_text(
-      chat_id=query.message.chat_id,
-      message_id=query.message.message_id,
-      text="Which group do you want to know about?",
-      reply_markup=reply_markup
-    )
-  else:
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Which group do you want to know about?", reply_markup=reply_markup)
+  context.bot.edit_message_text(
+    chat_id=query.message.chat_id,
+    message_id=query.message.message_id,
+    text="Which group do you want to know about?",
+    reply_markup=reply_markup
+  ) 
   pass
   
 def apollo(update, context):
@@ -224,10 +241,10 @@ def voyager(update, context):
 
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
 
-grouplist_handler1 = CommandHandler('groups', grouplist)
-grouplist_handler2 = CallbackQueryHandler('GroupBack')
-dispatcher.add_handler(grouplist_handler1)
-dispatcher.add_handler(grouplist_handler2)
+grouplist_handler = CommandHandler('groups', grouplist)
+glcallback_handler = CallbackQueryHandler('GroupBack')
+dispatcher.add_handler(grouplist_handler)
+dispatcher.add_handler(glcallback_handler)
 
 discovery_handler = CallbackQueryHandler('stellagang')
 dispatcher.add_handler(discovery_handler)
