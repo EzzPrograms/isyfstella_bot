@@ -120,7 +120,6 @@ def grouplist(update, context):
   context.bot.send_message(chat_id=update.effective_chat.id, text="Which group do you want to know about?", reply_markup=reply_markup)
   pass
 
-@send_typing_action
 def glcallback(update, context):
   button_list = [
     InlineKeyboardButton("Apollo", callback_data="apollo"),
@@ -145,7 +144,6 @@ def glcallback(update, context):
     text="Which group do you want to know about?",
     reply_markup=reply_markup
   ) 
-  pass
   
 def apollo(update, context):
   query = update.callback_query
@@ -154,6 +152,8 @@ def apollo(update, context):
   ]
 
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+
+
 
 def cassini(update, context):
   query = update.callback_query
@@ -171,12 +171,11 @@ def curiosity(update, context):
 
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
   
-@send_typing_action
 def discovery(update, context):
   query = update.callback_query
   button_list = [
     InlineKeyboardButton("Facilitators List", callback_data="sgfacil"),
-    InlineKeyboardButton("Delegates List", callback_data="sgfacil"),
+    InlineKeyboardButton("Delegates List", callback_data="sgdel"),
     InlineKeyboardButton("Back", callback_data="GroupBack")
   ]
 
@@ -190,7 +189,48 @@ def discovery(update, context):
     "Discovery was a key part of the assembly of the ISS and carried the Hubble Space Telescope into orbit, allowing humans to probe further into the depths of the universe!",
     reply_markup=reply_markup
   )
-  pass
+
+def discovery_members(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("Back", callback_data="stellagang")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+
+  time.sleep(0.5)
+  if query.data == "sgfacil":
+    context.bot.edit_message_text(
+      chat_id=query.message.chat_id,
+      message_id=query.message.message_id,
+      text="Discovery Facilitators:\n\n"
+      "1. Nigel\n"
+      "2. Yujia\n"
+      "3. Loh Yun\n"
+      "4. Chuhao",
+      reply_markup=reply_markup
+    )
+  elif query.data == "sgdel":
+    context.bot.edit_message_text(
+      chat_id=query.message.chat_id,
+      message_id=query.message.message_id,
+      text="Discovery Delegates:\n\n"
+      "1. Emeirul Ezzuddean\n"
+      "2. Li Linyu\n"
+      "3. Marcin Bartoszewicz\n"
+      "4. Sharifah Yura Mona Mas Rahayu\n"
+      "5. Aditya Khandelwal\n"
+      "6. Hu Man Mak (Emily)\n"
+      "7. Hu Tongyu\n"
+      "8. Huang Junwei\n"
+      "9. Ryan Ng\n"
+      "10. Wong Yin Leng Angelina\n"
+      "11. Yap Seng Meng Izo\n"
+      "12. Zhang Minyue\n",
+      reply_markup=reply_markup
+    )
+  else:
+    pass
   
 def nhorizons(update, context):
   query = update.callback_query
