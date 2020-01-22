@@ -181,7 +181,6 @@ def discovery(update, context):
 
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
 
-  time.sleep(0.5)
   context.bot.edit_message_text(
     chat_id=query.message.chat_id,
     message_id=query.message.message_id,
@@ -198,7 +197,6 @@ def discovery_members(update, context):
 
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
 
-  time.sleep(0.5)
   if query.data == "sgfacil":
     context.bot.edit_message_text(
       chat_id=query.message.chat_id,
@@ -288,6 +286,10 @@ dispatcher.add_handler(glcallback_handler)
 
 discovery_handler = CallbackQueryHandler(discovery, pattern='stellagang')
 dispatcher.add_handler(discovery_handler)
+dcfacils_handler = CallbackQueryHandler(discovery_members, pattern='sgfacil')
+dcdels_handler = CallbackQueryHandler(discovery_members, pattern='sgdel')
+dispatcher.add_handler(dcfacils_handler)
+dispatcher.add_handler(dcdels_handler)
 
 # Miscellaneous Commands
 @send_typing_action
