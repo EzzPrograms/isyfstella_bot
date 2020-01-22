@@ -147,6 +147,8 @@ def gbfull(update, context):
     parse_mode=telegram.ParseMode.MARKDOWN
   )
   time.sleep(0.7)
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Green Balls Full Story", reply_to_message_id=query.message.chat_id)
+  time.sleep(1)
   context.bot.send_message(chat_id=update.effective_chat.id, text="A long long time ago, in a land far far away, there was this young boy. He was talented and excelled at everything he did, often scoring extremely well for his tests.")
   time.sleep(0.7)
   context.bot.send_message(chat_id=update.effective_chat.id, text="Once he got 100/100 for a Math test and his teacher wanted to reward him. So they asked him, “What do you want as a reward?” And he answered, “I want green balls.” His teacher were perplexed and asked him why but he refused to answer.")
