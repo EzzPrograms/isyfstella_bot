@@ -35,24 +35,19 @@ def build_menu(buttons,
     menu.append(footer_buttons)
   return menu
 
+# Start message
 @send_typing_action
 def start(update, context):
   time.sleep(0.5)
   context.bot.send_message(chat_id=update.effective_chat.id, text="Hi! I'm Stella.\n"
   "You might know me from ISYF!\n\n"
-  "Here are the commands that I can do:\n"
-  "/start: Brings up a welcome message!\n"
-  "/photos: Gives direct links to all the ISYF 2020 photos!\n"
-  "/videos: Gives links to all the videos from ISYF 2020!\n"
-  "/nigel: Soon.\n"
-  "/ryan: Does the most basic thing ever.\n"
-  "/greenballs: GREEN BALLS\n"
-  "/help: Gives a list if all available commands.");
+  "Do /help to see all the commands that I can do!\n");
   pass
 
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 
+# Media
 @send_typing_action
 def photos(update, context):
   button_list = [
@@ -104,6 +99,7 @@ def helpmsg(update, context):
 help_handler = CommandHandler('help', helpmsg)
 dispatcher.add_handler(help_handler)
 
+# Miscellaneous Commands
 @send_typing_action
 def ryan(update, context):
   time.sleep(0.5)
@@ -153,7 +149,7 @@ def gbfull(update, context):
   time.sleep(0.7)
   context.bot.send_message(chat_id=update.effective_chat.id, text="A long long time ago, in a land far far away, there was this young boy. He was talented and excelled at everything he did, often scoring extremely well for his tests.")
   time.sleep(0.7)
-  context.bot.send_message(chat_id=update.effective_chat.id, text="Once he got 100/100 for a Math test and his teacher wanted to reward him. So they asked him, “What do you want as a reward?” And he answered, \“I want green balls.\” His teacher were perplexed and asked him why but he refused to answer.")
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Once he got 100/100 for a Math test and his teacher wanted to reward him. So they asked him, “What do you want as a reward?” And he answered, “I want green balls.” His teacher were perplexed and asked him why but he refused to answer.")
   time.sleep(0.7)
   context.bot.send_message(chat_id=update.effective_chat.id, text="Many years later, when he won the Nobel Prize for curing cancer, he declined the Nobel Committee’s prize money. The Committee then asked him what he wanted instead. And he answered, “I want green balls.” The Nobel Committee was perplexed and asked him why but he refused to answer.")
   time.sleep(0.7)
@@ -170,7 +166,7 @@ dispatcher.add_handler(gbfull_handler)
 @send_typing_action
 def unknown(update, context):
   time.sleep(0.5)
-  context.bot.send_sticker(chat_id=update.effective_chat.id, sticker="https://github.com/EzzPrograms/Misc-Stuff/blob/master/STK-20200116-WA0049.webp?raw=true")
+  context.bot.send_sticker(chat_id=update.effective_chat.id, sticker=open("images/StellaHappy.webp", 'rb'))
   context.bot.send_message(chat_id=update.effective_chat.id, text="Hmm, this is an invalid command.\n"
   "Try using /help to see all my valid commands!")
   pass
