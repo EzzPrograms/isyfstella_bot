@@ -99,6 +99,98 @@ def helpmsg(update, context):
 help_handler = CommandHandler('help', helpmsg)
 dispatcher.add_handler(help_handler)
 
+# Group Descriptions
+def grouplist(update, context):
+  query = update.callback_query
+  if query.data == "GroupBack":
+    
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  
+def apollo(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+
+def cassini(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  
+def curiosity(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  
+def discovery(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  
+def nhorizons(update, context):
+  query = update.callback_query
+  
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  
+def parker(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  
+def rosetta(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  
+def sputnik(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  
+def viking(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  
+def voyager(update, context):
+  query = update.callback_query
+  button_list = [
+    InlineKeyboardButton("", callback_data="")
+  ]
+
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+
 # Miscellaneous Commands
 @send_typing_action
 def ryan(update, context):
