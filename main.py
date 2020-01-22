@@ -119,7 +119,7 @@ def grouplist(update, context):
 
   query = update.callback_query
 
-  if query.data == "GroupBack":
+  if query.id != "":
     context.bot.edit_message_text(
       chat_id=query.message.chat_id,
       message_id=query.message.message_id,
