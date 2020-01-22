@@ -242,11 +242,11 @@ def voyager(update, context):
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
 
 grouplist_handler = CommandHandler('groups', grouplist)
-glcallback_handler = CallbackQueryHandler('GroupBack')
+glcallback_handler = CallbackQueryHandler(glcallback, pattern='GroupBack')
 dispatcher.add_handler(grouplist_handler)
 dispatcher.add_handler(glcallback_handler)
 
-discovery_handler = CallbackQueryHandler('stellagang')
+discovery_handler = CallbackQueryHandler(discovery, pattern='stellagang')
 dispatcher.add_handler(discovery_handler)
 
 # Miscellaneous Commands
