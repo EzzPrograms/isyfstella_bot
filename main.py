@@ -41,7 +41,7 @@ def start(update, context):
   time.sleep(0.5)
   context.bot.send_message(chat_id=update.effective_chat.id, text="Hi! I'm Stella.\n"
   "You might know me from ISYF!\n\n"
-  "Do /help to see all the commands that I can do!\n");
+  "Do /help to see all the commands that I can do!\n")
   pass
 
 start_handler = CommandHandler('start', start)
@@ -100,15 +100,35 @@ help_handler = CommandHandler('help', helpmsg)
 dispatcher.add_handler(help_handler)
 
 # Group Descriptions
+@send_typing_action
 def grouplist(update, context):
-  query = update.callback_query
-  if query.data == "GroupBack":
-    
   button_list = [
-    InlineKeyboardButton("", callback_data="")
+    InlineKeyboardButton("Apollo", callback_data="apollo"),
+    InlineKeyboardButton("Cassini", callback_data="cassini"),
+    InlineKeyboardButton("Curiosity", callback_data="curiosity"),
+    InlineKeyboardButton("Discovery", callback_data="stellagang"),
+    InlineKeyboardButton("New Horizons", callback_data="nhorizons"),
+    InlineKeyboardButton("Parker", callback_data="parker"),
+    InlineKeyboardButton("Rosetta", callback_data="rosetta"),
+    InlineKeyboardButton("Sputnik", callback_data="sputnik"),
+    InlineKeyboardButton("Viking", callback_data="viking"),
+    InlineKeyboardButton("Voyager", callback_data="voyager")
   ]
 
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=2))
+
+  query = update.callback_query
+
+  if query.data == "GroupBack":
+    context.bot.edit_message_text(
+      chat_id=query.message.chat_id,
+      message_id=query.message.message_id,
+      text="Which group do you want to know about?",
+      reply_markup=reply_markup
+    )
+  else:
+    context.bot.send_message(chat_id=update.effective_chat.id, text="Which group do you want to know about?", reply_markup=reply_markup)
+  pass
   
 def apollo(update, context):
   query = update.callback_query
@@ -134,13 +154,26 @@ def curiosity(update, context):
 
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
   
+@send_typing_action
 def discovery(update, context):
   query = update.callback_query
   button_list = [
-    InlineKeyboardButton("", callback_data="")
+    InlineKeyboardButton("Facilitators List", callback_data="sgfacil"),
+    InlineKeyboardButton("Delegates List", callback_data="sgfacil"),
+    InlineKeyboardButton("Back", callback_data="GroupBack")
   ]
 
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+
+  time.sleep(0.5)
+  context.bot.edit_message_text(
+    chat_id=query.message.chat_id,
+    message_id=query.message.message_id,
+    text="Discovery is part of NASA's space shuttle program and flew more flights than any other Orbital Shuttle.\n"
+    "Discovery was a key part of the assembly of the ISS and carried the Hubble Space Telescope into orbit, allowing humans to probe further into the depths of the universe!",
+    reply_markup=reply_markup
+  )
+  pass
   
 def nhorizons(update, context):
   query = update.callback_query
@@ -190,6 +223,14 @@ def voyager(update, context):
   ]
 
   reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
+
+grouplist_handler1 = CommandHandler('groups', grouplist)
+grouplist_handler2 = CallbackQueryHandler('GroupBack')
+dispatcher.add_handler(grouplist_handler1)
+dispatcher.add_handler(grouplist_handler2)
+
+discovery_handler = CallbackQueryHandler('stellagang')
+dispatcher.add_handler(discovery_handler)
 
 # Miscellaneous Commands
 @send_typing_action
