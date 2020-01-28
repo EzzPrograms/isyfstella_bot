@@ -144,34 +144,8 @@ def glcallback(update, context):
     text="Which group do you want to know about?",
     reply_markup=reply_markup
   ) 
-  
-def apollo(update, context):
-  query = update.callback_query
-  button_list = [
-    InlineKeyboardButton("", callback_data="")
-  ]
 
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
-
-
-
-def cassini(update, context):
-  query = update.callback_query
-  button_list = [
-    InlineKeyboardButton("", callback_data="")
-  ]
-
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
-  
-def curiosity(update, context):
-  query = update.callback_query
-  button_list = [
-    InlineKeyboardButton("", callback_data="")
-  ]
-
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
-  
-def discovery(update, context):
+def groups(update, context):
   query = update.callback_query
   button_list = [
     InlineKeyboardButton("Facilitators List", callback_data="sgfacil"),
@@ -189,7 +163,7 @@ def discovery(update, context):
     reply_markup=reply_markup
   )
 
-def discovery_members(update, context):
+def gpmembers(update, context):
   query = update.callback_query
   button_list = [
     InlineKeyboardButton("Back", callback_data="stellagang")
@@ -229,62 +203,13 @@ def discovery_members(update, context):
     )
   else:
     pass
-  
-def nhorizons(update, context):
-  query = update.callback_query
-  
-  button_list = [
-    InlineKeyboardButton("", callback_data="")
-  ]
-
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
-  
-def parker(update, context):
-  query = update.callback_query
-  button_list = [
-    InlineKeyboardButton("", callback_data="")
-  ]
-
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
-  
-def rosetta(update, context):
-  query = update.callback_query
-  button_list = [
-    InlineKeyboardButton("", callback_data="")
-  ]
-
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
-  
-def sputnik(update, context):
-  query = update.callback_query
-  button_list = [
-    InlineKeyboardButton("", callback_data="")
-  ]
-
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
-  
-def viking(update, context):
-  query = update.callback_query
-  button_list = [
-    InlineKeyboardButton("", callback_data="")
-  ]
-
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
-  
-def voyager(update, context):
-  query = update.callback_query
-  button_list = [
-    InlineKeyboardButton("", callback_data="")
-  ]
-
-  reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=1))
 
 grouplist_handler = CommandHandler('groups', grouplist)
 glcallback_handler = CallbackQueryHandler(glcallback, pattern='GroupBack')
 dispatcher.add_handler(grouplist_handler)
 dispatcher.add_handler(glcallback_handler)
 
-discovery_handler = CallbackQueryHandler(discovery, pattern='stellagang')
+discovery_handler = CallbackQueryHandler(discovery, pattern='/\b(apollo|cassini|curiosity|stellagang|nhorizons|parker|rosetta|sputnik|viking|voyager)/g')
 dispatcher.add_handler(discovery_handler)
 dcfacils_handler = CallbackQueryHandler(discovery_members, pattern='sgfacil')
 dcdels_handler = CallbackQueryHandler(discovery_members, pattern='sgdel')
